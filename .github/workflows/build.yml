@@ -21,7 +21,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Собрать debug-APK
-        run: gradle assembleDebug --no-daemon
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: APK в артефакты
         uses: actions/upload-artifact@v4
@@ -48,7 +48,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Собрать APK
-        run: gradle assembleDebug --no-daemon
+        run: ./gradlew assembleDebug --no-daemon
 
       - name: Опубликовать APK в Release
         uses: softprops/action-gh-release@v2

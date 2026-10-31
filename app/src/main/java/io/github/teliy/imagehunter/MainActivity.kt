@@ -39,7 +39,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
-import io.github.teliy.imagehunter.core.AppLog
 import io.github.teliy.imagehunter.core.Injector
 import io.github.teliy.imagehunter.ui.GalleryScreen
 import io.github.teliy.imagehunter.ui.LogScreen
@@ -50,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppLog.init(applicationContext)
         Injector.init(applicationContext)
         val prefs = getSharedPreferences("imagehunter", MODE_PRIVATE)
 
