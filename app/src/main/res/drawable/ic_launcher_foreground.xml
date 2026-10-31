@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Значок Image Hunter: лупа, в которой видна галочка выбора (как на плитках выдачи) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- лупа: обод -->
+    <path
+        android:pathData="M48,26 a20,20 0 1,0 0.001,0 z M48,32 a14,14 0 1,1 -0.001,0 z"
+        android:fillColor="#FFFFFF"
+        android:fillType="evenOdd" />
+    <!-- лупа: ручка -->
+    <path
+        android:pathData="M61.5,57.5 L72,68 A4.2,4.2 0 0,1 66,74 L55.5,63.5 Z"
+        android:fillColor="#FFFFFF" />
+    <!-- галочка внутри лупы -->
+    <path
+        android:pathData="M41,47.5 L46.5,53 L57,41"
+        android:strokeColor="#FF7A1A"
+        android:strokeWidth="5"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

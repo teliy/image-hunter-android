@@ -1,0 +1,64 @@
+<resources>
+    <!-- Image Hunter Android — английские строки по умолчанию (en).
+         Локализации: values-ru, values-zh. -->
+
+    <string name="app_name">Image Hunter</string>
+
+    <!-- Навигация -->
+    <string name="tab_search">Search</string>
+    <string name="tab_gallery">Downloads</string>
+    <string name="tab_log">Log</string>
+
+    <!-- Поиск -->
+    <string name="query_hint">Search query</string>
+    <string name="find">Find</string>
+    <string name="engine">Search engine</string>
+    <string name="download_checked">Download checked</string>
+    <string name="collect_links">Collect links</string>
+    <string name="clear_marks">Clear marks</string>
+    <string name="checked_suffix">(%1$d checked)</string>
+    <string name="desktop_site">Desktop version of pages</string>
+    <string name="cb_title">Mark for download</string>
+    <string name="settings">Settings</string>
+    <string name="language">Language</string>
+    <string name="lang_system">System</string>
+
+    <!-- Диалоги поиска -->
+    <string name="collect_confirm_title">Collect links</string>
+    <string name="collect_confirm_text">Download all %1$d image links from this page (best candidates first)?</string>
+    <string name="no_links_title">Image Hunter</string>
+    <string name="no_links">No image links found on this page. Open an image search results page and try again.</string>
+    <string name="no_checked_title">Image Hunter</string>
+    <string name="no_checked">No tiles are checked. Tap the orange checkboxes on the results page first.</string>
+    <string name="downloading">Downloading %1$d images…</string>
+    <string name="download_done">Done: %1$d downloaded, %2$d failed. See the Log tab.</string>
+
+    <!-- Загрузки (галерея) -->
+    <string name="gallery_empty">Nothing downloaded yet.\nChecked images from the Search tab land in Pictures/ImageHunter.</string>
+    <string name="open_image">Open image</string>
+    <string name="delete_image">Delete</string>
+    <string name="deleted_one">Deleted</string>
+    <string name="share">Share</string>
+
+    <!-- Журнал -->
+    <string name="log_empty">The log is empty.</string>
+    <string name="log_title">Log</string>
+    <string name="log_slow">%1$s — %2$d ms</string>
+
+    <!-- События журнала -->
+    <string name="log_search">Search: engine %1$s, query “%2$s”</string>
+    <string name="log_boxes">Results page: tiles with checkboxes: %1$d</string>
+    <string name="log_boxes_zero">Results page: no tiles recognized (%1$d frame(s)) — check “Desktop version” or send us the log</string>
+    <string name="log_download_start">Downloading %1$d images from %2$s</string>
+    <string name="log_download_ok">Downloaded: %1$s</string>
+    <string name="log_download_fail">Failed: %1$s</string>
+    <string name="log_collect">Collected %1$d image links</string>
+    <string name="log_clear_marks">All marks cleared</string>
+    <string name="log_delete">Deleted: %1$s</string>
+
+    <!-- Меню -->
+    <string name="menu_settings">Settings</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="download">Download</string>
+</resources>

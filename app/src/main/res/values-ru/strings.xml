@@ -1,0 +1,63 @@
+<resources>
+    <!-- Image Hunter Android — русские строки (перевод значений/по умолчанию en). -->
+
+    <string name="app_name">Image Hunter</string>
+
+    <!-- Навигация -->
+    <string name="tab_search">Поиск</string>
+    <string name="tab_gallery">Загрузки</string>
+    <string name="tab_log">Журнал</string>
+
+    <!-- Поиск -->
+    <string name="query_hint">Поисковый запрос</string>
+    <string name="find">Найти</string>
+    <string name="engine">Поисковик</string>
+    <string name="download_checked">Скачать отмеченные</string>
+    <string name="collect_links">Собрать ссылки</string>
+    <string name="clear_marks">Снять отметки</string>
+    <string name="checked_suffix">(%1$d отмечено)</string>
+    <string name="desktop_site">Десктопная версия страниц</string>
+    <string name="cb_title">Отметить для скачивания</string>
+    <string name="settings">Настройки</string>
+    <string name="language">Язык</string>
+    <string name="lang_system">Системный</string>
+
+    <!-- Диалоги поиска -->
+    <string name="collect_confirm_title">Собрать ссылки</string>
+    <string name="collect_confirm_text">Скачать все %1$d ссылок на картинки с этой страницы (лучшие кандидаты — первыми)?</string>
+    <string name="no_links_title">Image Hunter</string>
+    <string name="no_links">Ссылок на картинки на странице не найдено. Откройте выдачу картинок поисковика и попробуйте снова.</string>
+    <string name="no_checked_title">Image Hunter</string>
+    <string name="no_checked">Отмеченных плиток нет. Сначала поставьте оранжевые галочки на странице выдачи.</string>
+    <string name="downloading">Скачиваю %1$d картинок…</string>
+    <string name="download_done">Готово: скачано %1$d, не удалось %2$d. Подробности — во вкладке «Журнал».</string>
+
+    <!-- Загрузки (галерея) -->
+    <string name="gallery_empty">Пока ничего не скачано.\nОтмеченные на вкладке «Поиск» картинки попадают в Pictures/ImageHunter.</string>
+    <string name="open_image">Открыть картинку</string>
+    <string name="delete_image">Удалить</string>
+    <string name="deleted_one">Удалено</string>
+    <string name="share">Поделиться</string>
+
+    <!-- Журнал -->
+    <string name="log_empty">Журнал пуст.</string>
+    <string name="log_title">Журнал</string>
+    <string name="log_slow">%1$s — %2$d мс</string>
+
+    <!-- События журнала -->
+    <string name="log_search">Поиск: %1$s, запрос «%2$s»</string>
+    <string name="log_boxes">Выдача: плиток с чекбоксами: %1$d</string>
+    <string name="log_boxes_zero">Выдача: плиток не распознано (%1$d фрейм(ов)) — включите «Десктопную версию» или пришлите журнал</string>
+    <string name="log_download_start">Скачиваю %1$d картинок из %2$s</string>
+    <string name="log_download_ok">Скачано: %1$s</string>
+    <string name="log_download_fail">Не удалось: %1$s</string>
+    <string name="log_collect">Собрано %1$d ссылок на картинки</string>
+    <string name="log_clear_marks">Все отметки сняты</string>
+    <string name="log_delete">Удалено: %1$s</string>
+
+    <!-- Меню -->
+    <string name="menu_settings">Настройки</string>
+    <string name="ok">ОК</string>
+    <string name="cancel">Отмена</string>
+    <string name="download">Скачать</string>
+</resources>
