@@ -12,8 +12,20 @@ android {
         applicationId = "io.github.teliy.imagehunter"
         minSdk = 29            // Android 10: MediaStore без разрешений на запись
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0"
+        versionCode = 2
+        versionName = "0.2.0"
+    }
+
+    // Фиксированный debug-keystore в репо: APK из любого прогона CI (и локальные)
+    // подписаны одним ключом — иначе установка обновления «поверх» старой версии
+    // упадёт с несовпадением подписей. Ключ отладочный, пароль стандартный.
+    signingConfigs {
+        getByName("debug") {
+            storeFile = rootProject.file(".debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
     }
 
     buildTypes {

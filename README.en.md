@@ -10,7 +10,7 @@ desktop version (`app/core/extractor.py`) is injected into it — tile heuristic
 for Yandex, DuckDuckGo, Google, Bing, Brave and Sogou, proxy-thumbnail
 unwrapping and host-lifting to the wrapper that knows the original URL.
 
-## Features (v0.1.0)
+## Features (v0.2.0)
 
 - **Search** — 11 engines with the same SERP URLs as desktop: Yandex,
   DuckDuckGo (safe), Google, Bing, Brave, Startpage, Mojeek, Baidu, Sogou,
@@ -29,6 +29,9 @@ unwrapping and host-lifting to the wrapper that knows the original URL.
 - **Log** — the same events as desktop: how many tiles were recognized,
   what was downloaded and what failed;
 - **Languages** — Russian, English, Chinese (Settings → Language);
+- **In-app updates** — Settings → “Check for updates” (plus a silent check
+  once a day): the APK is fetched from GitHub Releases and handed to the
+  system installer, just like on desktop;
 - the system Back button acts as "back in browser".
 
 ## Install
@@ -41,7 +44,20 @@ unwrapping and host-lifting to the wrapper that knows the original URL.
 3. Or check [Releases](https://github.com/teliy/image-hunter-android/releases) —
    every tag ships an APK.
 
-Requires Android 10 (API 29) or newer. The app only requests INTERNET.
+Requires Android 10 (API 29) or newer. The app only requests INTERNET (and,
+for in-app updates, the "install unknown apps" right — Android will ask for
+it the first time you update).
+
+### Updating to a new version
+
+Starting from v0.2.0 you can update right in the app:
+**Settings → Check for updates**. The app checks
+[Releases](https://github.com/teliy/image-hunter-android/releases), downloads
+the APK and launches the installer; on the first update Android will ask you
+to allow Image Hunter to "install unknown apps". All project APKs are signed
+with the same key, so the new version installs over the old one without
+uninstalling. The automatic check runs at most once a day and only notifies
+about a new version.
 
 ### Build from source
 
@@ -55,7 +71,7 @@ Requires JDK 17 and the Android SDK (just open the project in Android Studio).
 
 ## Differences from the desktop version
 
-See the table in [README.md](README.md) (Russian) — Android v0.1.0 covers the
+See the table in [README.md](README.md) (Russian) — Android v0.2.0 covers the
 search + checkboxes + bulk download core; "Find everywhere", format conversion
 and the folder tree are on the roadmap. Android WebView cannot execute JS in
 cross-origin frames, so the Mail.ru results inside a nested Yandex frame get

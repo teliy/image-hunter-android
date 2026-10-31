@@ -60,4 +60,27 @@
     <string name="ok">ОК</string>
     <string name="cancel">Отмена</string>
     <string name="download">Скачать</string>
+
+    <!-- Обновление из приложения (GitHub Releases) -->
+    <string name="settings_version">Версия: %1$s</string>
+    <string name="check_updates">Проверить обновления</string>
+    <string name="update_checking">Проверяю…</string>
+    <string name="update_available_title">Доступно обновление</string>
+    <string name="update_available_text">Доступна версия %1$s (установлена: %2$s).\nРазмер APK: %3$s.\nСкачать и установить?</string>
+    <string name="update_later">Позже</string>
+    <string name="update_downloading">Скачиваю обновление… %1$d%%</string>
+    <string name="update_ready_title">Обновление скачано</string>
+    <string name="update_ready_text">APK обновления скачан. Нажмите «Установить обновление» — если Android спросит, разрешите Image Hunter установку неизвестных приложений.</string>
+    <string name="update_install">Установить обновление</string>
+    <string name="update_perms_hint">Разрешите Image Hunter «Установку неизвестных приложений» в настройках системы, затем снова нажмите «Установить обновление».</string>
+    <string name="update_uptodate">У вас последняя версия (%1$s)</string>
+    <string name="update_check_error">Не удалось связаться с GitHub Releases. Проверьте интернет-соединение.</string>
+    <string name="update_error">Не удалось обновить: %1$s</string>
+
+    <!-- События журнала: обновление -->
+    <string name="log_update_check">Обновления: проверяю GitHub Releases…</string>
+    <string name="log_update_uptodate">Обновления: установлена последняя версия %1$s</string>
+    <string name="log_update_found">Обновления: доступна новая версия — %1$s</string>
+    <string name="log_update_download_ok">Обновления: APK скачан (%1$s)</string>
+    <string name="log_update_fail">Обновления: ошибка — %1$s</string>
 </resources>

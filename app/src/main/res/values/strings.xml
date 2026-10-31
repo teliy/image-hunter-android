@@ -61,4 +61,27 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="download">Download</string>
+
+    <!-- Обновление из приложения (GitHub Releases) -->
+    <string name="settings_version">Version: %1$s</string>
+    <string name="check_updates">Check for updates</string>
+    <string name="update_checking">Checking…</string>
+    <string name="update_available_title">Update available</string>
+    <string name="update_available_text">Version %1$s is available (installed: %2$s).\nAPK size: %3$s.\nDownload and install?</string>
+    <string name="update_later">Later</string>
+    <string name="update_downloading">Downloading update… %1$d%%</string>
+    <string name="update_ready_title">Update downloaded</string>
+    <string name="update_ready_text">The update APK is downloaded. Tap “Install update” — if Android asks, allow installing unknown apps for Image Hunter.</string>
+    <string name="update_install">Install update</string>
+    <string name="update_perms_hint">Allow “Install unknown apps” for Image Hunter in system settings, then tap “Install update” again.</string>
+    <string name="update_uptodate">You already have the latest version (%1$s)</string>
+    <string name="update_check_error">Could not reach GitHub Releases. Check your internet connection.</string>
+    <string name="update_error">Update failed: %1$s</string>
+
+    <!-- События журнала: обновление -->
+    <string name="log_update_check">Updates: checking GitHub Releases…</string>
+    <string name="log_update_uptodate">Updates: latest version %1$s is installed</string>
+    <string name="log_update_found">Updates: new version available — %1$s</string>
+    <string name="log_update_download_ok">Updates: APK downloaded (%1$s)</string>
+    <string name="log_update_fail">Updates: error — %1$s</string>
 </resources>

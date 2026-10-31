@@ -60,4 +60,27 @@
     <string name="ok">确定</string>
     <string name="cancel">取消</string>
     <string name="download">下载</string>
+
+    <!-- 应用内更新（GitHub Releases） -->
+    <string name="settings_version">版本：%1$s</string>
+    <string name="check_updates">检查更新</string>
+    <string name="update_checking">检查中…</string>
+    <string name="update_available_title">有可用更新</string>
+    <string name="update_available_text">新版本 %1$s（当前版本：%2$s）。\nAPK 大小：%3$s。\n下载并安装？</string>
+    <string name="update_later">稍后</string>
+    <string name="update_downloading">正在下载更新… %1$d%%</string>
+    <string name="update_ready_title">更新已下载</string>
+    <string name="update_ready_text">更新 APK 已下载。点击「安装更新」——如果系统询问，请允许 Image Hunter 安装未知应用。</string>
+    <string name="update_install">安装更新</string>
+    <string name="update_perms_hint">请在系统设置中允许 Image Hunter「安装未知应用」，然后再次点击「安装更新」。</string>
+    <string name="update_uptodate">已是最新版本（%1$s）</string>
+    <string name="update_check_error">无法连接 GitHub Releases，请检查网络。</string>
+    <string name="update_error">更新失败：%1$s</string>
+
+    <!-- 日志事件：更新 -->
+    <string name="log_update_check">更新：正在检查 GitHub Releases…</string>
+    <string name="log_update_uptodate">更新：已安装最新版本 %1$s</string>
+    <string name="log_update_found">更新：发现新版本 — %1$s</string>
+    <string name="log_update_download_ok">更新：APK 已下载（%1$s）</string>
+    <string name="log_update_fail">更新：错误 — %1$s</string>
 </resources>

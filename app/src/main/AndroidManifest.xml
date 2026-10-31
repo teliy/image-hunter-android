@@ -2,8 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Поисковики и загрузка картинок — только интернет, других разрешений нет:
-         скачиваем в MediaStore (Pictures/ImageHunter), этого хватает. -->
+         скачиваем в MediaStore (Pictures/ImageHunter), этого хватает.
+
+         REQUEST_INSTALL_PACKAGES — обновление из приложения: установка
+         скачанного APK релиза (GitHub Releases) через системный установщик. -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- FileProvider — передаём скачанный APK обновления системному установщику -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
 
         <!-- Автосохранение выбранного языка приложения (AppCompat, API &lt; 33) -->
         <service

@@ -50,7 +50,11 @@ jobs:
       - name: Собрать APK
         run: ./gradlew assembleDebug --no-daemon
 
+      # Понятное имя ассета: его ищет и обновление из приложения (Updater.kt)
+      - name: Переименовать APK
+        run: cp app/build/outputs/apk/debug/app-debug.apk "ImageHunter-${{ github.ref_name }}.apk"
+
       - name: Опубликовать APK в Release
         uses: softprops/action-gh-release@v2
         with:
-          files: app/build/outputs/apk/debug/app-debug.apk
+          files: ImageHunter-${{ github.ref_name }}.apk
