@@ -49,6 +49,7 @@ import io.github.teliy.imagehunter.core.ENGINES
 import io.github.teliy.imagehunter.core.Injector
 import io.github.teliy.imagehunter.core.SelItem
 import io.github.teliy.imagehunter.core.START_URL
+import io.github.teliy.imagehunter.core.WebDav
 import io.github.teliy.imagehunter.core.isImageSearchUrl
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -92,8 +93,16 @@ fun SearchScreen(desktopSite: Boolean) {
         val ua = webView?.settings?.userAgentString ?: DESKTOP_UA
         scope.launch {
             val r = Downloader.download(context, items, referer, ua)
+            var msg = context.getString(R.string.download_done, r.ok, r.fail)
+            // авто-выгрузка скачанного в WebDAV (если включена в настройках)
+            val dav = WebDav.autoUpload(context, r.uris)
+            if (dav != null) {
+                msg = context.getString(
+                    R.string.download_done_dav, r.ok, r.fail, dav.ok, dav.fail
+                )
+            }
             busy = false
-            infoMsg = context.getString(R.string.download_done, r.ok, r.fail)
+            infoMsg = msg
         }
     }
 

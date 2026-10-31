@@ -83,4 +83,30 @@
     <string name="log_update_found">Обновления: доступна новая версия — %1$s</string>
     <string name="log_update_download_ok">Обновления: APK скачан (%1$s)</string>
     <string name="log_update_fail">Обновления: ошибка — %1$s</string>
+
+    <!-- WebDAV -->
+    <string name="dav_section">WebDAV</string>
+    <string name="dav_server">Адрес сервера</string>
+    <string name="dav_user">Имя пользователя (необязательно)</string>
+    <string name="dav_password">Пароль (необязательно)</string>
+    <string name="dav_folder">Папка</string>
+    <string name="dav_save">Сохранить</string>
+    <string name="dav_saved">Сохранено</string>
+    <string name="dav_test">Проверить</string>
+    <string name="dav_test_ok">Соединение в порядке</string>
+    <string name="dav_auto_upload">Автоматически выгружать новые скачивания</string>
+    <string name="dav_upload_all">Загрузить всё в WebDAV</string>
+    <string name="dav_upload_one">Загрузить в WebDAV</string>
+    <string name="dav_done">WebDAV: выгружено %1$d, не удалось %2$d</string>
+    <string name="dav_not_configured">WebDAV не настроен — Настройки → WebDAV</string>
+    <string name="dav_all_uploaded">Все картинки уже на сервере</string>
+    <string name="dav_error">Ошибка WebDAV: %1$s</string>
+    <string name="download_done_dav">Готово: скачано %1$d, не удалось %2$d.\nВ WebDAV выгружено: %3$d, не удалось %4$d.</string>
+
+    <!-- События журнала: WebDAV -->
+    <string name="log_dav_start">WebDAV: выгружаю %1$d картинок</string>
+    <string name="log_dav_ok">WebDAV: выгружено %1$s</string>
+    <string name="log_dav_fail">WebDAV: не удалось %1$s — %2$s</string>
+    <string name="log_dav_test_ok">WebDAV: соединение в порядке</string>
+    <string name="log_dav_test_fail">WebDAV: соединение не удалось — %1$s</string>
 </resources>

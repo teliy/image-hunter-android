@@ -10,7 +10,7 @@ desktop version (`app/core/extractor.py`) is injected into it — tile heuristic
 for Yandex, DuckDuckGo, Google, Bing, Brave and Sogou, proxy-thumbnail
 unwrapping and host-lifting to the wrapper that knows the original URL.
 
-## Features (v0.2.0)
+## Features (v0.3.0)
 
 - **Search** — 11 engines with the same SERP URLs as desktop: Yandex,
   DuckDuckGo (safe), Google, Bing, Brave, Startpage, Mojeek, Baidu, Sogou,
@@ -32,6 +32,12 @@ unwrapping and host-lifting to the wrapper that knows the original URL.
 - **In-app updates** — Settings → “Check for updates” (plus a silent check
   once a day): the APK is fetched from GitHub Releases and handed to the
   system installer, just like on desktop;
+- **WebDAV** — upload saved images to your own server: “Upload all to WebDAV”
+  in the Downloads tab (re-running sends only new ones; already-uploaded are
+  skipped), single upload in the image preview, and auto-upload of new
+  downloads (Settings → WebDAV: server URL, login/password, folder,
+  connection test). Desktop lessons applied: background requests with
+  timeouts, sequential uploads — the UI never freezes;
 - the system Back button acts as "back in browser".
 
 ## Install
@@ -71,7 +77,7 @@ Requires JDK 17 and the Android SDK (just open the project in Android Studio).
 
 ## Differences from the desktop version
 
-See the table in [README.md](README.md) (Russian) — Android v0.2.0 covers the
+See the table in [README.md](README.md) (Russian) — Android v0.3.0 covers the
 search + checkboxes + bulk download core; "Find everywhere", format conversion
 and the folder tree are on the roadmap. Android WebView cannot execute JS in
 cross-origin frames, so the Mail.ru results inside a nested Yandex frame get
@@ -79,8 +85,10 @@ no checkboxes.
 
 ## Privacy
 
-No analytics, no server side: requests go only to search engines and image
-host sites. The log is kept locally in app memory.
+No analytics, no server side: requests go only to search engines, image
+host sites and your own WebDAV server. WebDAV settings (including the
+password) are stored only on the device. The log is kept locally in app
+memory.
 
 ## License
 

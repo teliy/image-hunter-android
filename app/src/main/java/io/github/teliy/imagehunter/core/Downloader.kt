@@ -3,6 +3,7 @@ package io.github.teliy.imagehunter.core
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.provider.MediaStore
 import io.github.teliy.imagehunter.R
 import kotlinx.coroutines.Dispatchers
@@ -74,7 +75,11 @@ data class SelItem(val best: String, val alts: List<String>) {
  */
 object Downloader {
 
-    data class Summary(val ok: Int, val fail: Int)
+    data class Summary(
+        val ok: Int,
+        val fail: Int,
+        val uris: List<Uri> = emptyList(),   // что скачалось — для авто-выгрузки в WebDAV
+    )
 
     private val client: OkHttpClient by lazy {
         OkHttpClient.Builder()
@@ -94,6 +99,7 @@ object Downloader {
         AppLog.log(context.getString(R.string.log_download_start, items.size, referer))
         var ok = 0
         var fail = 0
+        val uris = mutableListOf<Uri>()
         coroutineScope {
             val gate = Semaphore(3)   // три параллельных загрузки, как договаривались на десктопе
             items.forEachIndexed { idx, item ->
@@ -108,8 +114,11 @@ object Downloader {
                         val (bytes, mime) = fetched
                         val name = "IH_${stamp}_${idx + 1}.${extFor(mime, item.best)}"
                         val saved = save(resolver, name, mime, bytes)
-                        if (saved) {
-                            synchronized(this@Downloader) { ok++ }
+                        if (saved != null) {
+                            synchronized(this@Downloader) {
+                                ok++
+                                uris.add(saved)
+                            }
                             AppLog.log(context.getString(R.string.log_download_ok, name))
                         } else {
                             synchronized(this@Downloader) { fail++ }
@@ -119,7 +128,7 @@ object Downloader {
                 }
             }
         }
-        Summary(ok, fail)
+        Summary(ok, fail, uris)
     }
 
     /** Скачать первый валидный кандидат: (байты, mime) или null. */
@@ -159,8 +168,8 @@ object Downloader {
         }
     }
 
-    /** Сохранить в MediaStore: Pictures/ImageHunter; true — успех. */
-    private fun save(resolver: android.content.ContentResolver, name: String, mime: String, bytes: ByteArray): Boolean {
+    /** Сохранить в MediaStore: Pictures/ImageHunter; Uri записи или null. */
+    private fun save(resolver: android.content.ContentResolver, name: String, mime: String, bytes: ByteArray): Uri? {
         return try {
             val values = ContentValues().apply {
                 put(MediaStore.Images.Media.DISPLAY_NAME, name)
@@ -169,14 +178,14 @@ object Downloader {
                 put(MediaStore.Images.Media.IS_PENDING, 1)
             }
             val uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-                ?: return false
-            resolver.openOutputStream(uri)?.use { it.write(bytes) } ?: return false
+                ?: return null
+            resolver.openOutputStream(uri)?.use { it.write(bytes) } ?: return null
             values.clear()
             values.put(MediaStore.Images.Media.IS_PENDING, 0)
             resolver.update(uri, values, null, null)
-            true
+            uri
         } catch (e: Exception) {
-            false
+            null
         }
     }
 

@@ -7,8 +7,11 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -25,6 +28,7 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -41,12 +45,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.core.os.LocaleListCompat
 import io.github.teliy.imagehunter.core.AppLog
 import io.github.teliy.imagehunter.core.Injector
 import io.github.teliy.imagehunter.core.Updater
+import io.github.teliy.imagehunter.core.WebDav
 import io.github.teliy.imagehunter.ui.GalleryScreen
 import io.github.teliy.imagehunter.ui.LogScreen
 import io.github.teliy.imagehunter.ui.SearchScreen
@@ -289,6 +296,14 @@ private fun SettingsDialog(
                 LanguageRow(tag = "en", label = "English")
                 LanguageRow(tag = "zh", label = "中文")
 
+                HorizontalDivider(Modifier.padding(top = 12.dp))
+                Text(
+                    stringResource(R.string.dav_section),
+                    Modifier.padding(top = 12.dp, bottom = 4.dp),
+                    style = MaterialTheme.typography.titleSmall,
+                )
+                DavSection()
+
                 HorizontalDivider(Modifier.padding(top = 12.dp, bottom = 4.dp))
                 Row(
                     Modifier.fillMaxWidth(),
@@ -318,6 +333,120 @@ private fun LanguageRow(tag: String, label: String) {
         else LocaleListCompat.forLanguageTags(tag)
         AppCompatDelegate.setApplicationLocales(locales)
     }) { Text(label) }
+}
+
+/**
+ * Секция WebDAV в настройках: адрес, логин/пароль (необязательны), папка,
+ * проверка соединения и авто-выгрузка. Поля редактируются локально,
+ * применяются кнопкой «Сохранить».
+ */
+@Composable
+private fun DavSection() {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
+    val saved = remember { WebDav.loadConfig(context) }
+    var url by remember { mutableStateOf(saved.url) }
+    var user by remember { mutableStateOf(saved.user) }
+    var pass by remember { mutableStateOf(saved.password) }
+    var folder by remember { mutableStateOf(saved.folder) }
+    var auto by remember { mutableStateOf(saved.autoUpload) }
+    var testing by remember { mutableStateOf(false) }
+    var status by remember { mutableStateOf<String?>(null) }
+    var statusOk by remember { mutableStateOf(false) }
+
+    fun currentCfg() = WebDav.Config(
+        url = url.trim(), user = user.trim(), password = pass,
+        folder = folder.trim(), autoUpload = auto,
+    )
+
+    Column {
+        OutlinedTextField(
+            value = url,
+            onValueChange = { url = it; status = null },
+            label = { Text(stringResource(R.string.dav_server)) },
+            placeholder = { Text("https://example.com/dav") },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Spacer(Modifier.height(6.dp))
+        OutlinedTextField(
+            value = user,
+            onValueChange = { user = it; status = null },
+            label = { Text(stringResource(R.string.dav_user)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Spacer(Modifier.height(6.dp))
+        OutlinedTextField(
+            value = pass,
+            onValueChange = { pass = it; status = null },
+            label = { Text(stringResource(R.string.dav_password)) },
+            singleLine = true,
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Spacer(Modifier.height(6.dp))
+        OutlinedTextField(
+            value = folder,
+            onValueChange = { folder = it; status = null },
+            label = { Text(stringResource(R.string.dav_folder)) },
+            singleLine = true,
+            modifier = Modifier.fillMaxWidth(),
+        )
+        Row(
+            Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Text(
+                stringResource(R.string.dav_auto_upload),
+                Modifier.weight(1f),
+                style = MaterialTheme.typography.bodyMedium,
+            )
+            Switch(checked = auto, onCheckedChange = { auto = it; status = null })
+        }
+        Row(
+            Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            TextButton(
+                onClick = {
+                    scope.launch {
+                        testing = true
+                        status = null
+                        val err = WebDav.testConnection(currentCfg())
+                        testing = false
+                        statusOk = err == null
+                        status = if (err == null) {
+                            AppLog.log(context.getString(R.string.log_dav_test_ok))
+                            context.getString(R.string.dav_test_ok)
+                        } else {
+                            AppLog.log(context.getString(R.string.log_dav_test_fail, err), warn = true)
+                            context.getString(R.string.dav_error, err)
+                        }
+                    }
+                },
+                enabled = !testing,
+            ) {
+                Text(
+                    if (testing) stringResource(R.string.update_checking)
+                    else stringResource(R.string.dav_test)
+                )
+            }
+            TextButton(onClick = {
+                WebDav.saveConfig(context, currentCfg())
+                statusOk = true
+                status = context.getString(R.string.dav_saved)
+            }) { Text(stringResource(R.string.dav_save)) }
+        }
+        status?.let { s ->
+            Text(
+                s,
+                style = MaterialTheme.typography.bodySmall,
+                color = if (statusOk) MaterialTheme.colorScheme.primary
+                else MaterialTheme.colorScheme.error,
+            )
+        }
+    }
 }
 
 /** Диалог «доступна новая версия»: Скачать / Позже. */

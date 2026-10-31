@@ -12,8 +12,8 @@ android {
         applicationId = "io.github.teliy.imagehunter"
         minSdk = 29            // Android 10: MediaStore без разрешений на запись
         targetSdk = 35
-        versionCode = 2
-        versionName = "0.2.0"
+        versionCode = 3
+        versionName = "0.3.0"
     }
 
     // Фиксированный debug-keystore в репо: APK из любого прогона CI (и локальные)

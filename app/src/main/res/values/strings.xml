@@ -84,4 +84,30 @@
     <string name="log_update_found">Updates: new version available — %1$s</string>
     <string name="log_update_download_ok">Updates: APK downloaded (%1$s)</string>
     <string name="log_update_fail">Updates: error — %1$s</string>
+
+    <!-- WebDAV -->
+    <string name="dav_section">WebDAV</string>
+    <string name="dav_server">Server URL</string>
+    <string name="dav_user">Username (optional)</string>
+    <string name="dav_password">Password (optional)</string>
+    <string name="dav_folder">Folder</string>
+    <string name="dav_save">Save</string>
+    <string name="dav_saved">Saved</string>
+    <string name="dav_test">Test</string>
+    <string name="dav_test_ok">Connection OK</string>
+    <string name="dav_auto_upload">Auto-upload new downloads</string>
+    <string name="dav_upload_all">Upload all to WebDAV</string>
+    <string name="dav_upload_one">Upload to WebDAV</string>
+    <string name="dav_done">WebDAV: %1$d uploaded, %2$d failed</string>
+    <string name="dav_not_configured">WebDAV is not configured — Settings → WebDAV</string>
+    <string name="dav_all_uploaded">All images are already on the server</string>
+    <string name="dav_error">WebDAV error: %1$s</string>
+    <string name="download_done_dav">Done: %1$d downloaded, %2$d failed.\nUploaded to WebDAV: %3$d ok, %4$d failed.</string>
+
+    <!-- События журнала: WebDAV -->
+    <string name="log_dav_start">WebDAV: uploading %1$d images</string>
+    <string name="log_dav_ok">WebDAV: uploaded %1$s</string>
+    <string name="log_dav_fail">WebDAV: failed %1$s — %2$s</string>
+    <string name="log_dav_test_ok">WebDAV: connection OK</string>
+    <string name="log_dav_test_fail">WebDAV: connection failed — %1$s</string>
 </resources>

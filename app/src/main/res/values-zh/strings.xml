@@ -83,4 +83,30 @@
     <string name="log_update_found">更新：发现新版本 — %1$s</string>
     <string name="log_update_download_ok">更新：APK 已下载（%1$s）</string>
     <string name="log_update_fail">更新：错误 — %1$s</string>
+
+    <!-- WebDAV -->
+    <string name="dav_section">WebDAV</string>
+    <string name="dav_server">服务器地址</string>
+    <string name="dav_user">用户名（可选）</string>
+    <string name="dav_password">密码（可选）</string>
+    <string name="dav_folder">文件夹</string>
+    <string name="dav_save">保存</string>
+    <string name="dav_saved">已保存</string>
+    <string name="dav_test">测试</string>
+    <string name="dav_test_ok">连接正常</string>
+    <string name="dav_auto_upload">自动上传新下载的图片</string>
+    <string name="dav_upload_all">全部上传到 WebDAV</string>
+    <string name="dav_upload_one">上传到 WebDAV</string>
+    <string name="dav_done">WebDAV：成功上传 %1$d 张，失败 %2$d 张</string>
+    <string name="dav_not_configured">WebDAV 未配置 — 设置 → WebDAV</string>
+    <string name="dav_all_uploaded">所有图片已都在服务器上</string>
+    <string name="dav_error">WebDAV 错误：%1$s</string>
+    <string name="download_done_dav">完成：成功下载 %1$d 张，失败 %2$d 张。\n已上传到 WebDAV：成功 %3$d 张，失败 %4$d 张。</string>
+
+    <!-- 日志事件：WebDAV -->
+    <string name="log_dav_start">WebDAV：正在上传 %1$d 张图片</string>
+    <string name="log_dav_ok">WebDAV：已上传 %1$s</string>
+    <string name="log_dav_fail">WebDAV：上传失败 %1$s — %2$s</string>
+    <string name="log_dav_test_ok">WebDAV：连接正常</string>
+    <string name="log_dav_test_fail">WebDAV：连接失败 — %1$s</string>
 </resources>
