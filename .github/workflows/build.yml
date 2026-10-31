@@ -3,6 +3,7 @@ name: build
 on:
   push:
     branches: [main]
+    tags: ['v*']   # иначе пуш тега не запускает release-сборку APK
   workflow_dispatch:
 
 jobs:
